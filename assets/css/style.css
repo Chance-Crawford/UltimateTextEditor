@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+}
+.tab-content{
+    border-top: 2px solid black;
+    height: 72.8vh;
+}
+
+.tab-holder{
+    background-color: lightblue;
+}
+/*  */
+.tab{
+    padding: 1rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
+
+}
+
+.tab:hover{
+    background-color: #23a5e5;
+}
+
+.currActive{
+    background-color: #1d8ec5;
+}

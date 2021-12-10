@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UltimateTextEditor</title>
+    <!-- code mirror css sheet -->
+    <link rel="stylesheet" href="./assets/plugins/codemirror/lib/codemirror.css">
+    <!-- bootstrap stylesheet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+
+    <!-- header section -->
+    <header>
+        <div class="d-flex flex-wrap justify-content-center p-4 bg-primary">
+            <h1 class="text-white text-center w-100 font-weight-bolder">
+                Ultimate Text Editor
+            </h1>
+            <button class="btn pt-3 pb-3 pl-5 pr-5 mt-2 bg-white font-weight-bold shadow border border-dark">
+                Run Code
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <div>
+            <div class="row">
+
+                <!-- left column -->
+                <div class="col-12 col-md-5 p-0">
+                    <!-- tabs -->
+                    <div id="tab-holder" class="d-flex tab-holder border-bottom border-dark ml-3">
+                        <span class="tab">HTML</span>
+                        <span class="tab">CSS</span>
+                        <span class="tab">JavaScript</span>
+                    </div>
+
+                    <div id="html-editor" class="tab-content">
+
+                    </div>
+
+                    <div id="css-editor" class="tab-content d-none">
+
+                    </div>
+
+                    <div id="javascript-editor" class="tab-content d-none">
+
+                    </div>
+
+                </div>
+    
+                <!-- right column -->
+                <div class="col-12 col-md-7 p-0 bg-success">
+
+                </div>
+    
+            </div>
+        </div>
+        
+
+    </main>
+
+
+
+
+    <!-- code mirror main script -->
+    <script src="./assets/plugins/codemirror/lib/codemirror.js"></script>
+    <!-- code mirror scripts for what languages it utilizes -->
+    <script src="./assets/plugins/codemirror/mode/css/css.js"></script>
+    <script src="./assets/plugins/codemirror/mode/javascript/javascript.js"></script>
+    <script src="./assets/plugins/codemirror/mode/xml/xml.js"></script>
+    <!-- code mirror add on that auto refresahes the codemirror objects
+    so that in the tabs, even if the editor wasnt displayed yet, it checks to see
+    whenever the editor is so it can reinitialize the editor window
+    -->
+    <script src="./assets/plugins/codemirror/addon/display/autorefresh.js"></script>
+    
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>

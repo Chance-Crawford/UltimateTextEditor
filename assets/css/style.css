@@ -1,15 +1,63 @@
 *{
     box-sizing: border-box;
 }
-.tab-content{
-    border-top: 2px solid black;
-    height: 72.8vh;
+
+body{
+    font-family: "Open Sans", Helvetica, sans-serif;
 }
+
+.run-btn{
+    background-color: white;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+.run-btn:hover{
+    background-color:   #e2e2e2;
+}
+
+.run-btn:active{
+    transform: scale(0.95);
+}
+
+
+.holder{
+    padding: 0 15px;
+}
+
+
+.left-col{
+    border-right: 2px solid black;
+    z-index: 3;
+    -webkit-box-shadow: 6px 1px 8px 0px rgba(0,0,0,0.48); 
+    box-shadow: 6px 1px 8px 0px rgba(0,0,0,0.48);
+}
+
+
+.editor-holder{
+    -webkit-box-shadow: -1px -2px 11px 0px rgba(0,0,0,0.6); 
+    box-shadow: -1px -2px 11px 0px rgba(0,0,0,0.6);
+}
+
+
+.tab-content{
+    height: 75vh;
+    /* used animation defined below in .35 seconds */
+    animation: fadeIn .35s;
+}
+
+/* creating keyframe animation going from invisible to visible */
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
 
 .tab-holder{
     background-color: lightblue;
 }
-/*  */
+
+
 .tab{
     padding: 1rem 1.5rem;
     font-weight: bold;
@@ -24,4 +72,10 @@
 
 .currActive{
     background-color: #1d8ec5;
+}
+
+.preview{
+    border: none;
+    height: 100%;
+    width: 100%;
 }

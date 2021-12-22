@@ -5,10 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UltimateTextEditor</title>
+    <!-- favicon error fix -->
+    <link rel="shortcut icon" href="#">
     <!-- code mirror css sheet -->
     <link rel="stylesheet" href="./assets/plugins/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="./assets/plugins/codemirror/addon/hint/show-hint.css">
     <!-- bootstrap stylesheet -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- google fonts open sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;0,800;1,300;1,400;1,700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
@@ -16,47 +25,56 @@
 
     <!-- header section -->
     <header>
-        <div class="d-flex flex-wrap justify-content-center p-4 bg-primary">
+        <div class="d-flex w-100 flex-wrap justify-content-center p-4 bg-primary">
             <h1 class="text-white text-center w-100 font-weight-bolder">
                 Ultimate Text Editor
             </h1>
-            <button class="btn pt-3 pb-3 pl-5 pr-5 mt-2 bg-white font-weight-bold shadow border border-dark">
+            <button id="run-code" class="btn d-flex flex-wrap justify-content-center pt-3 pb-3 pl-4 pr-4 mt-2 font-weight-bold shadow run-btn border border-dark">
+                <span class="mr-2"><i class="fas fa-play"></i></span>
                 Run Code
+                
             </button>
         </div>
     </header>
 
     <main>
 
-        <div>
+        <!-- holder class puts padding of 15 on left and right, 
+            just so that the row and
+        columns will behave properly and not spill over on the right side
+        -->
+        <div class="holder">
             <div class="row">
 
                 <!-- left column -->
-                <div class="col-12 col-md-5 p-0">
+                <div class="col-12 col-md-5 p-0 left-col">
                     <!-- tabs -->
-                    <div id="tab-holder" class="d-flex tab-holder border-bottom border-dark ml-3">
+                    <div id="tab-holder" class="d-flex tab-holder border-bottom border-dark">
                         <span class="tab">HTML</span>
                         <span class="tab">CSS</span>
                         <span class="tab">JavaScript</span>
                     </div>
 
-                    <div id="html-editor" class="tab-content">
+                    <div class="editor-holder">
+                        <div id="html-editor" class="tab-content">
 
+                        </div>
+    
+                        <div id="css-editor" class="tab-content d-none">
+    
+                        </div>
+    
+                        <div id="javascript-editor" class="tab-content d-none">
+    
+                        </div>
                     </div>
-
-                    <div id="css-editor" class="tab-content d-none">
-
-                    </div>
-
-                    <div id="javascript-editor" class="tab-content d-none">
-
-                    </div>
+                    
 
                 </div>
     
                 <!-- right column -->
-                <div class="col-12 col-md-7 p-0 bg-success">
-
+                <div class="col-12 col-md-7 p-2">
+                    <iframe id="preview" class="preview"></iframe>
                 </div>
     
             </div>
@@ -64,7 +82,6 @@
         
 
     </main>
-
 
 
 
@@ -79,6 +96,22 @@
     whenever the editor is so it can reinitialize the editor window
     -->
     <script src="./assets/plugins/codemirror/addon/display/autorefresh.js"></script>
+    
+    <script src="./assets/plugins/codemirror/addon/hint/show-hint.js"></script>
+    <script src="./assets/plugins/codemirror/addon/hint/javascript-hint.js"></script>
+    <script src="./assets/plugins/codemirror/addon/hint/xml-hint.js"></script>
+    <script src="./assets/plugins/codemirror/addon/hint/css-hint.js"></script>
+    
+
+    <!-- this script is needed for scripts like matchtags.js and matchbrackets.js
+    to work properly
+    -->
+    <script src="./assets/plugins/codemirror/addon/fold/xml-fold.js"></script>
+
+    <script src="./assets/plugins/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="./assets/plugins/codemirror/addon/edit/matchtags.js"></script>
+    <script src="./assets/plugins/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="./assets/plugins/codemirror/addon/edit/closetag.js"></script>
     
     <script src="./assets/js/script.js"></script>
 </body>

@@ -1,38 +1,102 @@
 
 var tabHolder = document.querySelector("#tab-holder");
 
-function onStart(){
+
     
-    var htmlEditor = CodeMirror(document.querySelector("#html-editor"), {
-        value: "<!-- HTML code here -->",
-        tabSize: 5,
-        mode: "xml",
-        lineNumbers: true,
-        // code mirror add on that auto refresahes the codemirror objects
-        // so that when you switch tabs, even if the editor wasnt displayed yet, 
-        // it checks to see
-        // whenever the editor is finally displayed
-        // so it can reinitialize the editor window
-        // to be typed in
-        autoRefresh: true
-    });
+var htmlEditor = CodeMirror(document.querySelector("#html-editor"), {
+    value: "<!-- HTML code here -->",
+    tabSize: 2,
+    mode: "xml",
+    lineNumbers: true,
+    // code mirror add on that auto refresahes the codemirror objects
+    // so that when you switch tabs, even if the editor wasnt displayed yet, 
+    // it checks to see
+    // whenever the editor is finally displayed
+    // so it can reinitialize the editor window
+    // to be typed in
+    autoRefresh: true,
+    // highlights closing or opening tag when cursor is over element tag
+    // needs fold/xml script to work.
+    matchTags: {bothTags: true},
+    // auto closes xml tag when opening tag is written
+    autoCloseTags: true
+});
 
-    var cssEditor = CodeMirror(document.querySelector("#css-editor"), {
-        value: "/* css code here */",
-        tabSize: 5,
-        mode: "css",
-        lineNumbers: true,
-        autoRefresh: true
-    });
+// listen for after whenever any key is pressed in the html editor
+document.querySelector("#html-editor").addEventListener("keyup", (event) =>{
+    // checks to make sure the key pressed wasnt enter, {, }, or shift
+    if(event.keyCode != 13  && !htmlEditor.state.completionActive && event.keyCode != 123 && event.keyCode != 125 && event.keyCode != 16){
+        htmlEditor.showHint({completeSingle: false});
+    }
+    
+});
 
-    var jsEditor = CodeMirror(document.querySelector("#javascript-editor"), {
-        value: "// JavaScript code here",
-        tabSize: 5,
-        mode: "javascript",
-        lineNumbers: true,
-        autoRefresh: true
-    });
+// sets height of editor equal to parent element's height, .tab-content
+htmlEditor.setSize(null, "100%");
+
+
+
+
+
+var cssEditor = CodeMirror(document.querySelector("#css-editor"), {
+    value: "/* CSS code here */",
+    tabSize: 2,
+    mode: {name: "css", globalVars: true},
+    lineNumbers: true,
+    autoRefresh: true,
+    autoCloseBrackets: true,
+    matchBrackets: {bothTags: true}
+});
+
+// listen for after whenever any key is pressed in the css editor
+document.querySelector("#css-editor").addEventListener("keypress", (event) =>{
+    // if key pressed was not enter and the csseditor is not already showing the
+    // auto complete dropdown. display dropdown.
+    // checks to make sure the key pressed wasnt enter, {, }, (, ), ;, or shift.
+    if(event.keyCode != 13  && !cssEditor.state.completionActive && event.keyCode != 123 && event.keyCode != 125 && event.keyCode != 16 && event.keyCode != 40 && event.keyCode != 41 && event.keyCode != 59){
+        cssEditor.showHint({completeSingle: false});
+    }
+    
+});
+
+cssEditor.setSize(null, "100%");
+
+var jsEditor = CodeMirror(document.querySelector("#javascript-editor"), {
+    value: "// JavaScript code here",
+    tabSize: 2,
+    mode: "javascript",
+    lineNumbers: true,
+    autoRefresh: true,
+    autoCloseBrackets: true,
+    matchBrackets: {bothTags: true}
+});
+
+// listen for after whenever any key is pressed in the css editor
+document.querySelector("#javascript-editor").addEventListener("keypress", (event) =>{
+    // checks to make sure the key pressed wasnt enter, {, }, (, ), ;, :, =, or shift.
+    if(event.keyCode != 13 && !jsEditor.state.completionActive && event.keyCode != 123 && event.keyCode != 40 && event.keyCode != 41 && event.keyCode != 125 && event.keyCode != 16 && event.keyCode != 59 && event.keyCode != 58 && event.keyCode != 61){
+        jsEditor.showHint({completeSingle: false});
+    }
+    
+});
+
+jsEditor.setSize(null, "100%");
+
+
+function runCode(){
+    // the preview window on rightside of the screen where user code will 
+    // be written to
+    var previewCodeWindow = document.querySelector("#preview").contentWindow.document;
+
+    var cssUserCode = "<style>" + cssEditor.getValue() + "</style>";
+    var htmlUserCode = htmlEditor.getValue();
+    var jsUserCode = "<s" + "cript>" + jsEditor.getValue() + "</s" + "cript>";
+
+    previewCodeWindow.open();
+    previewCodeWindow.write(htmlUserCode + cssUserCode + jsUserCode);
+    previewCodeWindow.close();
 }
+
 
 
 function onTabClick(event){
@@ -69,10 +133,10 @@ function onTabClick(event){
 
     }
     
-
-
 }
 
+
+
 // events
-onStart();
+document.querySelector("#run-code").addEventListener("click", runCode);
 tabHolder.addEventListener("click", onTabClick)

@@ -1,6 +1,6 @@
 
 var tabHolder = document.querySelector("#tab-holder");
-
+var code = [];
 
     
 var htmlEditor = CodeMirror(document.querySelector("#html-editor"), {
@@ -86,6 +86,7 @@ jsEditor.setSize(null, "100%");
 function runCode(){
     // the preview window on rightside of the screen where user code will 
     // be written to
+    // preview is an iframe so that it can use contentWindow
     var previewCodeWindow = document.querySelector("#preview").contentWindow.document;
 
     var cssUserCode = "<style>" + cssEditor.getValue() + "</style>";
@@ -97,7 +98,28 @@ function runCode(){
     previewCodeWindow.close();
 }
 
+function saveCode(){
+    var cssUserCode = cssEditor.getValue();
+    var htmlUserCode = htmlEditor.getValue();
+    var jsUserCode = jsEditor.getValue();
 
+    var prevCode = [htmlUserCode, cssUserCode, jsUserCode];
+
+    localStorage.setItem("prevCode", JSON.stringify(prevCode));
+}
+
+function loadCode(){
+    code = localStorage.getItem("prevCode");
+
+    if(code.length > 0){
+        htmlEditor.setValue(code[0]);
+        cssEditor.setValue(code[1]);
+        jsEditor.setValue(code[2]);
+    }
+    else{
+        code = [];
+    }
+}
 
 function onTabClick(event){
 

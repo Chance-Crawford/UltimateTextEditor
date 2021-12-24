@@ -6,6 +6,11 @@ body{
     font-family: "Open Sans", Helvetica, sans-serif;
 }
 
+.header-bg{
+    background: rgb(30,144,255);
+    background: linear-gradient(180deg, rgba(30,144,255,1) 58%, rgba(68,163,255,1) 79%, rgba(150,203,255,1) 100%);
+}
+
 .run-btn{
     background-color: white;
     border-radius: 15px;

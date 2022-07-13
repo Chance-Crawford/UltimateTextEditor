@@ -26,16 +26,13 @@ body{
 }
 
 
-.holder{
-    padding: 0 15px;
-}
-
 
 .left-col{
     border-right: 2px solid black;
     z-index: 3;
     -webkit-box-shadow: 6px 1px 8px 0px rgba(0,0,0,0.48); 
     box-shadow: 6px 1px 8px 0px rgba(0,0,0,0.48);
+    width: 40%;
 }
 
 
@@ -79,8 +76,46 @@ body{
     background-color: #1d8ec5;
 }
 
+.preview-holder{
+    width: 60%;
+}
+
 .preview{
     border: none;
     height: 100%;
     width: 100%;
+}
+
+/* media queries */
+
+@media only screen and (max-width: 1350px) {
+    .left-col{
+        width: 50% !important;
+    }
+
+    .preview-holder{
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .left-col{
+        width: 100% !important;
+    }
+
+    .tab-content{
+        height: 50vh;
+    }
+
+    .preview-holder{
+        width: 100%;
+    }
+
+    .preview{
+        min-height: 70vh;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+
 }
